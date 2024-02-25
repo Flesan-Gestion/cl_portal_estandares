@@ -1,0 +1,19 @@
+/* Custom classes */
+.display-grid-important {
+    display: grid !important;
+}
+
+.w-full-important {
+    width: 100% !important;
+}
+
+.no-wrap-container {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Customizing existing classes in primevue */
+.p-button {
+    padding: 0.65rem 0.85rem !important;
+}
