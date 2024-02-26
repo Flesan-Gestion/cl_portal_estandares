@@ -1,37 +1,32 @@
+import standardRoutes from '../modules/standard/routes';
+import authRoutes from '../modules/auth/routes';
+import errorRoutes from '../modules/error/routes';
+
 export default [
     {
         path: '/',
-        redirect: '/auth'
+        redirect: '/panel/standards'
     },
     {
         path: '/panel',
+        redirect: '/panel/standards',
+        component: () => import('../layouts/panel/PanelLayout.vue'),
         children: [
-            {
-                name: 'Standars',
-                path: 'standards',
-                component: () => import('../modules/standard/StandardPage.vue')
-            }
+            ...standardRoutes
+                
         ],
     },
     {
         path: '/auth',
         component: () => import('../layouts/auth/AuthLayout.vue'),
         children: [
-            {
-                name: 'Login',
-                path: '/',
-                component: () => import('../modules/auth/LoginPage.vue')
-            }
+            ...authRoutes
         ],
     },
     {
         path: '/error',
         children: [
-            {
-                name: '404',
-                path: '404',
-                component: () => import('../modules/error/404.vue')
-            }
+            ...errorRoutes
         ]
     },
     {

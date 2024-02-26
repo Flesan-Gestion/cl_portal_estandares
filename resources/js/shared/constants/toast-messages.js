@@ -10,6 +10,12 @@ export const ToastsMessages = [
     detail: 'El registro ha sido guardado'
   },
   {
+    title: ToastTypeMessage.LOGOUT_SUCCESS,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Operación Exitosa',
+    detail: 'Se ha cerrado su sesión'
+  },
+  {
     title: ToastTypeMessage.FORM_ERROR,
     severity: ToastSeverityMessage.WARN,
     summary: 'Hubo un problema',
@@ -29,5 +35,6 @@ export const ToastsMessages = [
     summary: 'Hubo un problema interno',
     detail: 'Hubo un error desconocido'
   },
+
 ]
 

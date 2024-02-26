@@ -1,16 +1,22 @@
 import './bootstrap';
 import App from './App.vue';
 import { createApp } from 'vue';
+import store from './store/index';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
-import router from './routes/router';
+import ConfirmationService from 'primevue/confirmationservice';
 import setGlobalComponents from './components';
 import setGlobalProperties from './config/globalproperties.config';
+import router from './routes/router';
+import Ripple from 'primevue/ripple';
 
 const app = createApp(App);
 app.use(router);
-app.use(PrimeVue); // Plugin de vue
-app.use(ToastService); // Plugin para los Toasts
+app.use(store);
+app.use(PrimeVue);
+app.use(ToastService);
+app.use(ConfirmationService);
+app.directive('ripple', Ripple);
 setGlobalComponents(app);
 setGlobalProperties(app);
 app.mount('#app');

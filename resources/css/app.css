@@ -1,11 +1,11 @@
-@import 'primeicons/primeicons.css';
-@import 'primeflex/primeflex.css';
-@import './theme.css';
-@import './custom.css';
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+@import "./custom.css";
+@import "./theme.css";
 
 @font-face {
-    font-family: 'Poppins';
-    src: url('/public/fonts/poppins.ttf');
+    font-family: "Poppins";
+    src: url("/public/fonts/poppins.ttf");
 }
 
 * {
@@ -13,13 +13,12 @@
     padding: 0;
 }
 
-*,
-::before,
-::after {
+body,
+.p-component,
+.p-inputtext {
     font-family: 'Poppins', sans-serif !important;
-    box-sizing: border-box;
+    font-size: 13px !important;
 }
-
 
 html {
     font-size: 13px;
