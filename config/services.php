@@ -31,4 +31,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_ID'),         // Your Google Client ID
+        'client_secret' => env('GOOGLE_SECRET'), // Your Google Client Secret
+        'redirect' => env('GOOGLE_URL'),
+        'project_id' => env('GOOGLE_APP_ID'),
+        'refreshToken' => env('GOOGLE_REFRESH_TOKEN'),
+        'redirect_uris' => [env('GOOGLE_URL')],
+    ],
+
 ];

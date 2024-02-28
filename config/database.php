@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'seguridadapp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -75,6 +75,38 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
+            
+        'seguridadapp' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT'),
+            'database' => env('DB_DATABASE_SECURITY'),
+            'username' => env('DB_USERNAME_SECURITY'),
+            'password' => env('DB_PASSWORD_SECURITY'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => env('DB_SCHEMA_SECURITY'),
+            'sslmode' => 'prefer',
+        ],
+
+        
+        'dw_chile' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL_DW'),
+            'host' => env('DB_HOST_DW_CL'),
+            'port' => env('DB_PORT_DW_CL'),
+            'database' => env('DB_DATABASE_DW_CL'),
+            'username' => env('DB_USERNAME_DW_CL'),
+            'password' => env('DB_PASSWORD_DW_CL'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => env('DB_SCHEMA_DW_CL'),
             'sslmode' => 'prefer',
         ],
 

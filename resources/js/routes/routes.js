@@ -13,7 +13,7 @@ export default [
         component: () => import('../layouts/panel/PanelLayout.vue'),
         children: [
             ...standardRoutes
-                
+
         ],
     },
     {
@@ -25,9 +25,14 @@ export default [
     },
     {
         path: '/error',
+        component: () => import('../layouts/auth/AuthLayout.vue'),
         children: [
             ...errorRoutes
         ]
+    },
+    {
+        path: '/redirect/:email',
+        component: () => import('../modules/auth/LoginRedirect.vue')
     },
     {
         path: '/:catchAll(.*)',

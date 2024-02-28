@@ -8,7 +8,7 @@
                     <img :src="this.$utl.getImg('logoGrupoFlesan')" class="w-full">
                 </div>
             </div>
-            <div class="surface-card p-5 shadow-2 border-round w-full sm:w-25rem z-3 " id="login-slot">
+            <div class="surface-card p-5 shadow-2 border-round w-full sm:w-25rem z-3" id="login-slot">
                 <!-- <div class="w-full h-5rem flex justify-content-center mb-3" id="login-slot-portal-image">
                     <img :src="this.$utl.getImg('logoSolicitudFondos')" class="h-full">
                 </div> -->

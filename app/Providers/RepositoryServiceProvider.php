@@ -3,10 +3,16 @@
 namespace App\Providers;
 
 use App\Interfaces\{
-    EssentialRepositoryInterface
+    EssentialRepositoryInterface,
+    RolRepositoryInterface,
+    UserRepositoryInterface,
+    UserRolRepositoryInterface
 };
 use App\Repositories\{
-    EssentialRepository
+    EssentialRepository,
+    RolRepository,
+    UserRepository,
+    UserRolRepository
 };
 use Illuminate\Support\ServiceProvider;
 
@@ -19,7 +25,6 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
     }
 
     /**
@@ -30,5 +35,8 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(EssentialRepositoryInterface::class, EssentialRepository::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(RolRepositoryInterface::class, RolRepository::class);
+        $this->app->bind(UserRolRepositoryInterface::class, UserRolRepository::class);
     }
 }

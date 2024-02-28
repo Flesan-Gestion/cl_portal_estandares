@@ -11,7 +11,7 @@
 export default {
     methods: {
         async submit() {
-            this.$utl.navigate('Standars');
+            window.location.href = '/api/auth/google';
         }
     },
 };

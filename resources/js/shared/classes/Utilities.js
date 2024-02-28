@@ -5,7 +5,10 @@ import router from "../../routes/router";
 export class Utilities {
 
     // Propiedad de blur para los modales
-    static modalBlur = { mask: { style: 'backdrop-filter: blur(5px)' } }
+    static modalBlur = { mask: { style: 'backdrop-filter: blur(5px)' } };
+
+    // Propiedad de conexión al store
+    static store = store;
 
     // Formatear fecha
     static formatDate(date) {
@@ -85,4 +88,5 @@ export class Utilities {
     static getSvg(fileName) {
         return Assets.svg[fileName];
     }
+
 }
