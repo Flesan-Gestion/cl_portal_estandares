@@ -1,6 +1,6 @@
 export default [
     {
-        name: 'Standars',
+        name: 'Standards',
         path: 'standards',
         description: 'Estándares Inmobiliarios',
         icon: 'pi-tags',

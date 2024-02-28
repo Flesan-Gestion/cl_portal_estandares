@@ -2,18 +2,35 @@ import { ToastTypeMessage } from './toast-type-message';
 import { ToastSeverityMessage } from './toast-severity-message';
 
 export const ToastsMessages = [
-
-  {
-    title: ToastTypeMessage.REGISTER_SUCCESS,
-    severity: ToastSeverityMessage.SUCCESS,
-    summary: 'Operación Exitosa',
-    detail: 'El registro ha sido guardado'
-  },
   {
     title: ToastTypeMessage.LOGOUT_SUCCESS,
     severity: ToastSeverityMessage.SUCCESS,
     summary: 'Operación Exitosa',
     detail: 'Se ha cerrado su sesión'
+  },
+  {
+    title: ToastTypeMessage.USER_ALREADY_LOGGED,
+    severity: ToastSeverityMessage.ERROR,
+    summary: 'Hubo un problema',
+    detail: 'Su usuario ya se encuentra logeado'
+  },
+  {
+    title: ToastTypeMessage.USER_NOT_LOGGED_IN,
+    severity: ToastSeverityMessage.ERROR,
+    summary: 'Hubo un problema',
+    detail: 'Su usuario no se encuentra logeado'
+  },
+  {
+    title: ToastTypeMessage.USER_ROL_NOT_ALLOWED,
+    severity: ToastSeverityMessage.ERROR,
+    summary: 'Hubo un problema',
+    detail: 'Su usuario no tiene acceso a este recurso'
+  },
+  {
+    title: ToastTypeMessage.REGISTER_SUCCESS,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Operación Exitosa',
+    detail: 'El registro ha sido guardado'
   },
   {
     title: ToastTypeMessage.FORM_ERROR,

@@ -19,14 +19,14 @@
 
         <div class="sign-out p-2 ">
             <div class="flex-1 flex align-items-center">
-                <img :src="this.$utl.getImg('userTemplate')"
+                <img :src="this.$utl.store.state.user.data?.avatar"
                     class="sign-out-info-image w-3rem h-3rem flex-none border-round" />
                 <div class="sign-out-info-name flex-auto flex flex-column justify-content-center">
                     <span class="pl-2">{{
-                        'USUARIO'
+                        this.$utl.store.state.user.data?.fullname
                     }}</span>
                     <span class="pl-2 text-md font-bold">{{
-                        'ROL ADMINISTRADOR'
+                        this.$utl.store.state.user.data?.rol?.nombre
                     }}</span>
                 </div>
             </div>

@@ -47,8 +47,8 @@ export class Utilities {
     }
 
     // Mostrar loader
-    static showLoader() {
-        store.commit("loader/show");
+    static showLoader(message = null) {
+        store.commit("loader/show", message);
     }
 
     // Ocultar loader
@@ -87,6 +87,10 @@ export class Utilities {
     // Obtener svg
     static getSvg(fileName) {
         return Assets.svg[fileName];
+    }
+
+    static accessRol(roles){
+        return roles.includes(store.state.user.data?.rol?.nombre);
     }
 
 }

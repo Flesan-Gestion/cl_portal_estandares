@@ -31,7 +31,7 @@ export default {
         const decodedUnicodePayload = decodeURIComponent(escape(decodedPayload));
         const payload = JSON.parse(decodedUnicodePayload);
         this.$utl.store.commit('user/set', payload.user);
-        this.$utl.navigate('Standars');
+        this.$utl.navigate('Standards');
         this.$utl.hiddenLoader();
 
     }

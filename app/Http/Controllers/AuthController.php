@@ -40,7 +40,7 @@ class AuthController extends Controller
             }
 
             $token = JWTAuth::claims($claims)->fromUser($user);
-            Cache::put('token_' . $googleUser->email, $token);
+            Cache::put('token_' . $googleUser->email, $token, 60);
 
             return redirect("/redirect/" . $googleUser->email);
         } catch (ClientException $exception) {

@@ -5,7 +5,11 @@
             <div
                 :class="`fast-transition flex flex-column absolute bottom-0 left-0 right-0 top-0 flex justify-content-center align-items-center ${showLogo ? 'opacity-100' : 'opacity-0'}`">
                 <img :src="this.$utl.getSvg('loader')" width="180">
-                <img :src="this.$utl.getImg('logoGrupoFlesan')" :class="`fast-transition mb-7 ${showNameCompany ? 'opacity-100' : 'opacity-0'}`" height="40">
+                <img :src="this.$utl.getImg('logoGrupoFlesan')"
+                    :class="`fast-transition mb-2 ${showNameCompany ? 'opacity-100' : 'opacity-0'}`" height="40">
+                <span :class="`text-md font-bold fast-transition mb-7 ${showMessage ? 'opacity-100' : 'opacity-0'}`">{{
+                    message }}</span>
+
             </div>
         </div>
     </div>
@@ -18,29 +22,42 @@ export default {
             showLogo: false,
             showNameCompany: false,
             showBlur: false,
+            showMessage: false,
+            message: null
         }
     },
     watch: {
         '$store.state.loader.visible': async function (visible) {
+
             if (visible) {
                 this.showLoader = true;
-                await this.$utl.sleep(10);
+                this.message = this.$store.state.loader.message;
+                await this.sleep(10);
                 this.showBlur = true;
-                await this.$utl.sleep(200);
+                await this.sleep(200);
                 this.showLogo = true;
-                await this.$utl.sleep(200);
                 this.showNameCompany = true;
+                this.showMessage = this.message != null;
             } else {
+                this.showMessage = false;
                 this.showNameCompany = false;
-                await this.$utl.sleep(200);
                 this.showLogo = false;
-                await this.$utl.sleep(200);
+                await this.sleep(200);
                 this.showBlur = false;
-                await this.$utl.sleep(200);
+                await this.sleep(200);
                 this.showLoader = false;
             }
         }
     },
+    methods: {
+        sleep(miliseconds) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(true);
+                }, miliseconds)
+            })
+        }
+    }
 }
 </script>
 <style scoped>
@@ -49,7 +66,7 @@ export default {
 }
 
 .fast-transition {
-    transition: all .2s ease;
+    transition: all .4s ease;
 }
 
 .bg-blur {

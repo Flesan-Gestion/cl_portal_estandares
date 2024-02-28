@@ -1,19 +1,20 @@
 import standardRoutes from '../modules/standard/routes';
+import userRoutes from '../modules/users/routes';
 import authRoutes from '../modules/auth/routes';
 import errorRoutes from '../modules/error/routes';
 
 export default [
     {
         path: '/',
-        redirect: '/panel/standards'
+        redirect: '/auth'
     },
     {
         path: '/panel',
         redirect: '/panel/standards',
         component: () => import('../layouts/panel/PanelLayout.vue'),
         children: [
-            ...standardRoutes
-
+            ...standardRoutes,
+            ...userRoutes
         ],
     },
     {

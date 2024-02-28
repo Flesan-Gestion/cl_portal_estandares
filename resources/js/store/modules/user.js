@@ -21,6 +21,9 @@ const user = {
                 country: user.pais,
                 rol: user.rol
             }
+        },
+        clear(state){
+            state.data = null;
         }
     },
     getters: {
