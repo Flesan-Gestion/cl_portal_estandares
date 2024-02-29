@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\{
     AuthController,
-    StandardController
+    StandardController,
+    UserController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,4 +33,8 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('/standard/create', [StandardController::class, 'create']);
     Route::put('/standard/update/{id}', [StandardController::class, 'update']);
     Route::put('/standard/saveComment/{id}', [StandardController::class, 'saveComment']);
+
+    Route::get('/user/getUsers', [UserController::class, 'getUsers']);
+    Route::put('/user/enable/{id}', [UserController::class, 'enable']);
+    Route::put('/user/disable/{id}', [UserController::class, 'disable']);
 });

@@ -64,5 +64,17 @@ export const ToastsMessages = [
     summary: 'Hubo un problema',
     detail: 'Se ha guardado su comentario'
   },
+  {
+    title: ToastTypeMessage.USER_DISABLED,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Operación exitosa',
+    detail: 'El usuario ha sido deshabilitado'
+  },
+  {
+    title: ToastTypeMessage.USER_ENABLED,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Operación exitosa',
+    detail: 'El usuario se ha habilitado'
+  },
 ]
 

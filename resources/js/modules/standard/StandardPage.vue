@@ -41,9 +41,9 @@
                 <Column bodyClass="no-wrap-container max-w-5rem" headerClass="w-4rem" header="ACCIONES">
                     <template #body="{ data }">
                         <div class="flex justify-content-center gap-2 w-full">
-                            <Button severity="help" icon="pi pi-comment" class="w-3rem" v-tooltip.top="'Comentar Estándar'"
+                            <Button severity="help" icon="pi pi-comment" class="w-3rem" v-tooltip.top="'Comentar'"
                                 placeholder="Top" @click="showCommentFormModal(data)" />
-                            <Button severity="info" icon="pi pi-eye" class="w-3rem" v-tooltip.top="'Ver Estándar'"
+                            <Button severity="info" icon="pi pi-eye" class="w-3rem" v-tooltip.top="'Ver Detalle'"
                                 placeholder="Top" @click="showStandardFormModal(data)" />
                         </div>
                     </template>
