@@ -22,6 +22,8 @@ class Application extends Model
      */
     protected $table = 'aplicacion';
 
+    public $timestamps = false;
+
     /**
      * The primary key for the model.
      * 

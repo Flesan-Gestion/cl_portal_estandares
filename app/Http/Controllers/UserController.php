@@ -19,6 +19,16 @@ class UserController extends Controller
         return $this->repository->getUsers();
     }
 
+    function create(Request $request)
+    {
+        return $this->repository->create($request->all());
+    }
+
+    function update(Request $request, $id)
+    {
+        return $this->repository->update($id, $request->all());
+    }
+
     function enable($id)
     {
         return $this->repository->update($id, array(

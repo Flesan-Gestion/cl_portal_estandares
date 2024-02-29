@@ -43,6 +43,8 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $table = 'aplicacion_usuario';
 
+    public $timestamps = false;
+
     /**
      * The primary key for the model.
      * 

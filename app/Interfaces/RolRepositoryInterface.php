@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 interface RolRepositoryInterface
 {
     function getById($id);
+    
+    function all();
 }

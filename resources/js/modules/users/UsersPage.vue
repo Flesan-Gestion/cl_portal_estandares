@@ -10,7 +10,7 @@
                 <template #header>
                     <div class="flex flex-column sm:flex-row justify-content-between">
                         <Button type="button" severity="success" label="Registrar" icon="pi pi-user-plus"
-                            @click="toggleUserFormModal" />
+                            @click="showUserFormModal(null)" />
 
                         <InputGroup class="w-auto sm:w-20rem mt-2 sm:mt-0">
                             <InputGroupAddon>
@@ -28,11 +28,14 @@
                 </Column>
                 <Column field="dni" bodyClass="no-wrap-container max-w-5rem" sortable header="DNI" headerClass="w-5rem">
                 </Column>
-                <Column field="pais" bodyClass="no-wrap-container max-w-7rem font-bold text-center" sortable header="PAIS"
+                <Column field="pais" bodyClass="no-wrap-container max-w-2rem font-bold text-center" sortable header="PAIS"
+                    headerClass="w-2rem">
+                </Column>
+                <Column field="rol.nombre" bodyClass="no-wrap-container max-w-7rem font-bold text-center" sortable header="ROL"
                     headerClass="w-7rem">
                 </Column>
-                <Column field="estado_sesion" bodyClass="no-wrap-container max-w-7rem font-bold text-center" sortable
-                    header="ESTADO" headerClass="w-7rem">
+                <Column field="estado_sesion" bodyClass="no-wrap-container max-w-3rem text-center" sortable
+                    header="ESTADO" headerClass="w-3rem">
                     <template #body="{ data }">
                         <Tag :value="data.estado_sesion == 0 ? 'INACTIVO' : 'ACTIVO'"
                             :severity="data.estado_sesion == 0 ? 'danger' : 'success'" class="font-bold"
@@ -44,7 +47,7 @@
                     <template #body="{ data }">
                         <div class="flex justify-content-center gap-2 w-full">
                             <Button severity="warning" icon="pi pi-pencil" class="w-3rem" v-tooltip.top="'Editar'"
-                                placeholder="Top"
+                                placeholder="Top" @click="showUserFormModal(data)"
                                 :disabled="data.id_aplicacion_usuario == this.$store.state.user.data?.id" />
                             <Button v-if="data.estado_sesion == 1" v-tooltip.top="'Inhabilitar'" placeholder="Top"
                                 :disabled="data.id_aplicacion_usuario == this.$store.state.user.data?.id" severity="danger"
@@ -98,11 +101,11 @@ export default {
             this.$utl.showConfirmation({
                 message: 'Esta usuario se cambiará a un estado de inactivo',
                 accept: async () => {
-                    this.$loader.show();
+                    this.$utl.showLoader();
                     await UserService.disable(id);
                     this.$utl.genToast(this.$tstType.USER_DISABLED);
                     this.users = await UserService.getUsers();
-                    this.$loader.hidden();
+                    this.$utl.hiddenLoader();
                 },
                 reject: () => { },
             })
@@ -111,18 +114,21 @@ export default {
             this.$utl.showConfirmation({
                 message: 'Se activará el usuario seleccionado',
                 accept: async () => {
-                    this.$loader.show();
+                    this.$utl.showLoader();
                     await UserService.enable(id);
                     this.$utl.genToast(this.$tstType.USER_ENABLED);
                     this.users = await UserService.getUsers();
-                    this.$loader.hidden();
+                    this.$utl.hiddenLoader();
                 },
                 reject: () => { },
             })
         },
+        showUserFormModal(user = null){
+            this.showUserForm = !this.showUserForm;
+            this.userSelected = user;
+        },
         toggleUserFormModal() {
             this.showUserForm = !this.showUserForm;
-            this.userSelected = null;
         },
         async onSaveUser() {
             this.showUserForm = !this.showUserForm;

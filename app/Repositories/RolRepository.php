@@ -22,4 +22,9 @@ class RolRepository implements RolRepositoryInterface
     {
         return $this->model->where('id_rol', $id)->first();
     }
+
+    function all()
+    {
+        return $this->model->where('id_aplicacion', env('ID_APLICACION'))->get();
+    }
 }

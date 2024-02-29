@@ -44,11 +44,13 @@ class UserRepository implements UserRepositoryInterface
             ->get(['id_aplicacion_usuario', 'username', 'name', 'estado_sesion', 'dni', 'nombres', 'apellidos', 'pais', 'avatar']);
         foreach ($users as $key => $value) {
             $rol = $this->repositoryRol->getById($value->usuarioRols[0]->id_rol);
+            $rol['id_user_rol'] = $value->usuarioRols[0]->id_usuario_rol;
             $users[$key]['rol'] = $rol;
+            unset($users[$key]['usuarioRols']);
         }
         return $users;
     }
-    
+
     public function findById(
         int $modelId,
         array $columns = ['*'],

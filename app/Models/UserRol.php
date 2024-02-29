@@ -26,6 +26,8 @@ class UserRol extends Model
      */
     protected $table = 'usuario_rol';
 
+    public $timestamps = false;
+
     /**
      * The primary key for the model.
      * 
