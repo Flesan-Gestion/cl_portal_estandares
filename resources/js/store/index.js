@@ -3,6 +3,7 @@ import loader from "./modules/loader";
 import toast from "./modules/toast";
 import sidebar from "./modules/sidebar";
 import user from "./modules/user";
+import confirmation from "./modules/confirmation";
 
 const store = createStore({
     namespaced:true,
@@ -10,7 +11,8 @@ const store = createStore({
         loader,
         toast,
         sidebar,
-        user
+        user,
+        confirmation
     }
 })
 

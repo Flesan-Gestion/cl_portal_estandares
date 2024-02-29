@@ -62,7 +62,7 @@ export default {
 </script>
 <style scoped>
 .super-position {
-    z-index: 2000;
+    z-index: 9000;
 }
 
 .fast-transition {

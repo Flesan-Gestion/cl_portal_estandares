@@ -56,6 +56,16 @@ export class Utilities {
         store.commit("loader/hidden");
     }
 
+    // Mostrar modal de confirmación
+    static showConfirmation(config) {
+        store.commit('confirmation/show', config);
+    }
+
+    // Ocultar modal de confirmación
+    static hiddenConfirmation() {
+        store.commit('confirmation/hidden');
+    }
+
     // Navegar a otra ruta
     static navigate(name) {
         router.push({ name });

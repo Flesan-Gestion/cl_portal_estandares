@@ -9,6 +9,7 @@ import setGlobalComponents from './components';
 import setGlobalProperties from './config/globalproperties.config';
 import router from './routes/router';
 import Ripple from 'primevue/ripple';
+import Tooltip from 'primevue/tooltip';
 
 const app = createApp(App);
 app.use(router);
@@ -17,6 +18,7 @@ app.use(PrimeVue);
 app.use(ToastService);
 app.use(ConfirmationService);
 app.directive('ripple', Ripple);
+app.directive('tooltip', Tooltip);
 setGlobalComponents(app);
 setGlobalProperties(app);
 app.mount('#app');

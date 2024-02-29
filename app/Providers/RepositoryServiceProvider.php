@@ -5,12 +5,14 @@ namespace App\Providers;
 use App\Interfaces\{
     EssentialRepositoryInterface,
     RolRepositoryInterface,
+    StandardRepositoryInterface,
     UserRepositoryInterface,
     UserRolRepositoryInterface
 };
 use App\Repositories\{
     EssentialRepository,
     RolRepository,
+    StandardRepository,
     UserRepository,
     UserRolRepository
 };
@@ -38,5 +40,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(RolRepositoryInterface::class, RolRepository::class);
         $this->app->bind(UserRolRepositoryInterface::class, UserRolRepository::class);
+        $this->app->bind(StandardRepositoryInterface::class, StandardRepository::class);
     }
 }

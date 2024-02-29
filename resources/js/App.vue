@@ -1,6 +1,7 @@
 <template>
     <Loader />
     <Toast position="top-left" />
+    <ConfirmationModal/>
     <router-view></router-view>
 </template>
 <script>
@@ -12,9 +13,9 @@ export default {
     watch: {
         '$store.state.toast.body': function (body) {
             setTimeout(() => {
-                this.$toast.add(body)
-            }, body.delay)
+                this.$toast.add(body);
+            }, body.delay);
         }
-    }
+    },
 }
 </script>

@@ -34,6 +34,7 @@ import TabPanel from 'primevue/tabpanel';
 import Sidebar from 'primevue/sidebar';
 import FormGroup from './FormGroup.vue';
 import Loader from './Loader.vue';
+import ConfirmationModal from './ConfirmationModal.vue';
 
 export default function setGlobalComponents(app) {
     app
@@ -67,10 +68,15 @@ export default function setGlobalComponents(app) {
         .component('SplitButton', SplitButton)
         .component('Tag', Tag)
         .component('SelectButton', SelectButton)
-        .component('FormGroup', FormGroup)
         .component('InputNumber', InputNumber)
-        .component('Loader', Loader)
         .component('Timeline', Timeline)
         .component('TabView', TabView)
         .component('TabPanel', TabPanel)
+
+
+
+        .component('FormGroup', FormGroup)
+        .component('Loader', Loader)
+        .component('ConfirmationModal', ConfirmationModal)
+
 }

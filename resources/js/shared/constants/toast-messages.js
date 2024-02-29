@@ -27,31 +27,42 @@ export const ToastsMessages = [
     detail: 'Su usuario no tiene acceso a este recurso'
   },
   {
-    title: ToastTypeMessage.REGISTER_SUCCESS,
-    severity: ToastSeverityMessage.SUCCESS,
-    summary: 'Operación Exitosa',
-    detail: 'El registro ha sido guardado'
-  },
-  {
     title: ToastTypeMessage.FORM_ERROR,
     severity: ToastSeverityMessage.WARN,
     summary: 'Hubo un problema',
     detail: 'Los campos no están rellenados correctamente'
   },
- 
+
   {
     title: ToastTypeMessage.SERVER_ERROR,
     severity: ToastSeverityMessage.ERROR,
     summary: 'Hubo un problema interno',
     detail: 'Contacta con la área de sistemas'
   },
- 
+
   {
     title: ToastTypeMessage.UNKNOWN_ERROR,
     severity: ToastSeverityMessage.ERROR,
     summary: 'Hubo un problema interno',
     detail: 'Hubo un error desconocido'
   },
-
+  {
+    title: ToastTypeMessage.REGISTER_SUCCESS,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Operación Exitosa',
+    detail: 'El registro ha sido guardado'
+  },
+  {
+    title: ToastTypeMessage.REGISTER_ERROR,
+    severity: ToastSeverityMessage.ERROR,
+    summary: 'Hubo un problema',
+    detail: 'Hubo un error desconocido'
+  },
+  {
+    title: ToastTypeMessage.REGISTER_COMMENT_SUCCESS,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Hubo un problema',
+    detail: 'Se ha guardado su comentario'
+  },
 ]
 

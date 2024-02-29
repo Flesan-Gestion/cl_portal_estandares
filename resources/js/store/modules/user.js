@@ -3,13 +3,14 @@ import { createStore } from "vuex";
 const user = {
     namespaced: true,
     state: {
-        data: null
+        data: null,
+        token: null
     },
     actions: {
 
     },
     mutations: {
-        set(state, user) {
+        setUser(state, user) {
             state.data = {
                 id: user.id_aplicacion_usuario,
                 email: user.username,
@@ -21,6 +22,9 @@ const user = {
                 country: user.pais,
                 rol: user.rol
             }
+        },
+        setToken(state, token){
+            state.token = token;
         },
         clear(state){
             state.data = null;

@@ -17,9 +17,32 @@ body,
 .p-component,
 .p-inputtext {
     font-family: 'Poppins', sans-serif !important;
-    font-size: 13px !important;
+    font-size: 12px !important;
 }
 
 html {
     font-size: 13px;
+}
+
+/* Estilo para el scrollbar */
+::-webkit-scrollbar {
+    font-size: 2px !important;
+    width: 7px !important;
+    height: 7px !important;
+}
+
+/* Estilo para la pista (track) del scrollbar */
+::-webkit-scrollbar-track {
+    background: transparent !important; /* Color de fondo de la pista */
+}
+
+/* Estilo para la parte deslizable (thumb) del scrollbar */
+::-webkit-scrollbar-thumb {
+    background: #888 !important; /* Color del thumb */
+    border-radius: 10px !important; /* Radio de borde del thumb */
+}
+
+/* Estilo para el thumb cuando está siendo arrastrado */
+::-webkit-scrollbar-thumb:hover {
+    background: #555 !important; /* Cambio de color cuando se pasa el mouse */
 }

@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\{
-    AuthController
+    AuthController,
+    StandardController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,8 @@ Route::get('/auth/getToken/{email}', [AuthController::class, 'getToken']);
 
 
 Route::group(['middleware' => ['jwt.verify']], function () {
-
-    
-
+    Route::get('/standard/all', [StandardController::class, 'all']);
+    Route::post('/standard/create', [StandardController::class, 'create']);
+    Route::put('/standard/update/{id}', [StandardController::class, 'update']);
+    Route::put('/standard/saveComment/{id}', [StandardController::class, 'saveComment']);
 });
