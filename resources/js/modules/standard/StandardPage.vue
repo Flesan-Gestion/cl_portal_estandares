@@ -44,7 +44,7 @@
                             <Button severity="help" icon="pi pi-comment" class="w-3rem" v-tooltip.top="'Comentar Estándar'"
                                 placeholder="Top" @click="showCommentFormModal(data)" />
                             <Button severity="info" icon="pi pi-eye" class="w-3rem" v-tooltip.top="'Ver Estándar'"
-                                placeholder="Top" />
+                                placeholder="Top" @click="showStandardFormModal(data)" />
                         </div>
                     </template>
                 </Column>
@@ -54,14 +54,18 @@
     </div>
     <CommentModal :visible="showCommentForm" :standardSelected="standardSelected" @closeModal="toggleCommentFormModal"
         @onSaveStandard="onSaveStandard"></CommentModal>
+    <StandardForm :visible="showStandardForm" :standardSelected="standardSelected" @closeModal="toggleStandardFormModal"
+        @onSaveStandard="onSaveStandard"></StandardForm>
 </template>
 <script>
 import { FilterMatchMode, FilterOperator } from 'primevue/api';
 import { StandardService } from './services/StandardService';
 import CommentModal from './components/CommentModal.vue';
+import StandardForm from './components/StandardForm.vue';
 export default {
     components: {
-        CommentModal
+        CommentModal,
+        StandardForm
     },
     data() {
         return {
@@ -80,6 +84,7 @@ export default {
             },
             specialities: [],
             showCommentForm: false,
+            showStandardForm: false,
             standardSelected: null
         }
     },
@@ -98,15 +103,23 @@ export default {
             const setSpecialities = new Set(this.standards.map(s => s.especialidad));
             return [...setSpecialities].map(rsr => { return { 'especialidad': rsr } });
         },
-        showCommentFormModal(standard){
+        showCommentFormModal(standard) {
             this.standardSelected = standard;
             this.toggleCommentFormModal();
+        },
+        showStandardFormModal(standard) {
+            this.standardSelected = standard;
+            this.toggleStandardFormModal();
         },
         toggleCommentFormModal() {
             this.showCommentForm = !this.showCommentForm;
         },
+        toggleStandardFormModal() {
+            this.showStandardForm = !this.showStandardForm;
+        },
         async onSaveStandard() {
             this.showCommentForm = !this.showCommentForm;
+            this.showStandardForm = !this.showStandardForm;
             this.standardSelected = null
             this.standards = await StandardService.all();
             this.specialities = this.getSpecialities();

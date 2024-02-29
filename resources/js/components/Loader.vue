@@ -32,9 +32,9 @@ export default {
             if (visible) {
                 this.showLoader = true;
                 this.message = this.$store.state.loader.message;
-                await this.sleep(10);
+                await this.$utl.sleep(10);
                 this.showBlur = true;
-                await this.sleep(200);
+                await this.$utl.sleep(200);
                 this.showLogo = true;
                 this.showNameCompany = true;
                 this.showMessage = this.message != null;
@@ -42,22 +42,13 @@ export default {
                 this.showMessage = false;
                 this.showNameCompany = false;
                 this.showLogo = false;
-                await this.sleep(200);
+                await this.$utl.sleep(200);
                 this.showBlur = false;
-                await this.sleep(200);
+                await this.$utl.sleep(200);
                 this.showLoader = false;
             }
         }
     },
-    methods: {
-        sleep(miliseconds) {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve(true);
-                }, miliseconds)
-            })
-        }
-    }
 }
 </script>
 <style scoped>
