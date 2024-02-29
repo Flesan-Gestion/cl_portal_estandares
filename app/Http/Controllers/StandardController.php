@@ -31,12 +31,17 @@ class StandardController extends Controller
         return $this->repository->update($id, $request->all());
     }
 
-    function saveComment(Request $request, $id){
+    function saveComment(Request $request, $id)
+    {
         return $this->repository->update($id, array(
             "comentarios" => $request->all()['comment'],
             "user_update" => $request->all()['user'],
             "user_comment" => $request->all()['user'],
         ));
+    }
 
+    function delete(Request $request, $id)
+    {
+        return $this->repository->update($id, array("enable" => 0, "user_update" => $request->all()['user']));
     }
 }

@@ -9,7 +9,7 @@
                 currentPageReportTemplate="Página {currentPage} de {totalPages}">
                 <template #header>
                     <div class="flex flex-column sm:flex-row justify-content-between">
-                        <Button type="button" label="Exportar a PDF" icon="pi pi-file-excel" />
+                        <Button type="button" label="Exportar a PDF" icon="pi pi-file-excel" @click="showStandardFormModal()" />
 
                         <InputGroup class="w-auto sm:w-20rem mt-2 sm:mt-0">
                             <InputGroupAddon>
@@ -38,13 +38,15 @@
                     header="REQUERIMIENTO"></Column>
                 <Column bodyClass="no-wrap-container max-w-12rem" headerClass="w-12rem" field="descripcion" sortable
                     header="DESCRIPCIÓN"></Column>
-                <Column bodyClass="no-wrap-container max-w-5rem" headerClass="w-4rem" header="ACCIONES">
+                <Column bodyClass="no-wrap-container max-w-7rem" headerClass="w-4rem" header="ACCIONES">
                     <template #body="{ data }">
                         <div class="flex justify-content-center gap-2 w-full">
                             <Button severity="help" icon="pi pi-comment" class="w-3rem" v-tooltip.top="'Comentar'"
                                 placeholder="Top" @click="showCommentFormModal(data)" />
                             <Button severity="info" icon="pi pi-eye" class="w-3rem" v-tooltip.top="'Ver Detalle'"
                                 placeholder="Top" @click="showStandardFormModal(data)" />
+                            <Button severity="danger" icon="pi pi-trash" class="w-3rem" v-tooltip.top="'Eliminar'"
+                                placeholder="Top" @click="deleteStandard(data.correlativo)" />
                         </div>
                     </template>
                 </Column>
@@ -103,11 +105,23 @@ export default {
             const setSpecialities = new Set(this.standards.map(s => s.especialidad));
             return [...setSpecialities].map(rsr => { return { 'especialidad': rsr } });
         },
+        async deleteStandard(idStandard){
+            this.$utl.showConfirmation({
+                    message: 'Se eliminará este estándar inmobiliario y no lo podrás volver a ver',
+                    accept: async () => {
+                        this.$utl.showLoader();
+                        await StandardService.delete(idStandard);
+                        this.$utl.genToast(this.$tstType.DELETE_SUCCESS);
+                        this.onSaveStandard();
+                    },
+                    reject: () => { },
+                })
+        },
         showCommentFormModal(standard) {
             this.standardSelected = standard;
             this.toggleCommentFormModal();
         },
-        showStandardFormModal(standard) {
+        showStandardFormModal(standard = null) {
             this.standardSelected = standard;
             this.toggleStandardFormModal();
         },
@@ -118,9 +132,9 @@ export default {
             this.showStandardForm = !this.showStandardForm;
         },
         async onSaveStandard() {
-            this.showCommentForm = !this.showCommentForm;
-            this.showStandardForm = !this.showStandardForm;
-            this.standardSelected = null
+            this.showCommentForm = false;
+            this.showStandardForm = false;
+            this.standardSelected = null;
             this.standards = await StandardService.all();
             this.specialities = this.getSpecialities();
             this.$utl.hiddenLoader();

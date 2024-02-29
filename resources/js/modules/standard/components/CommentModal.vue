@@ -37,11 +37,11 @@ export default {
         }
     },
     watch: {
-        standardSelected(newValue, oldValue) {
+        visible(newValue, oldValue) {
             if (!newValue) return;
             this.formComment.matchValue({
-                standard: `${newValue.identifier} / ${newValue.inmobiliaria}`,
-                comment: newValue.comentarios,
+                standard: `${this.standardSelected.identifier} / ${this.standardSelected.inmobiliaria}`,
+                comment: this.standardSelected.comentarios,
             })
         }
     },

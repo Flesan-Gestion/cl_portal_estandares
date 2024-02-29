@@ -61,7 +61,7 @@ export const ToastsMessages = [
   {
     title: ToastTypeMessage.REGISTER_COMMENT_SUCCESS,
     severity: ToastSeverityMessage.SUCCESS,
-    summary: 'Hubo un problema',
+    summary: 'Operación Exitosa',
     detail: 'Se ha guardado su comentario'
   },
   {
@@ -75,6 +75,12 @@ export const ToastsMessages = [
     severity: ToastSeverityMessage.SUCCESS,
     summary: 'Operación exitosa',
     detail: 'El usuario se ha habilitado'
+  },
+  {
+    title: ToastTypeMessage.DELETE_SUCCESS,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Operación exitosa',
+    detail: 'El registro ha sido eliminado'
   },
 ]
 

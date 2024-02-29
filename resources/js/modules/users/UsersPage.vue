@@ -31,7 +31,7 @@
                 <Column field="pais" bodyClass="no-wrap-container max-w-2rem font-bold text-center" sortable header="PAIS"
                     headerClass="w-2rem">
                 </Column>
-                <Column field="rol.nombre" bodyClass="no-wrap-container max-w-7rem font-bold text-center" sortable header="ROL"
+                <Column field="rol.nombre" bodyClass="no-wrap-container max-w-7rem text-center" sortable header="ROL"
                     headerClass="w-7rem">
                 </Column>
                 <Column field="estado_sesion" bodyClass="no-wrap-container max-w-3rem text-center" sortable
@@ -63,7 +63,7 @@
     </div>
 
 
-    <UserForm :visible="showUserForm" :userSelected="userSelected" @closeModal="toggleUserFormModal"
+    <UserForm :visible="showUserForm" :userSelected="userSelected" @closeModal="closeUserFormModal"
         @onSaveUser="onSaveUser"></UserForm>
 </template>
 <script>
@@ -124,14 +124,14 @@ export default {
             })
         },
         showUserFormModal(user = null){
-            this.showUserForm = !this.showUserForm;
+            this.showUserForm = true;
             this.userSelected = user;
         },
-        toggleUserFormModal() {
-            this.showUserForm = !this.showUserForm;
+        closeUserFormModal() {
+            this.showUserForm = false;
         },
         async onSaveUser() {
-            this.showUserForm = !this.showUserForm;
+            this.showUserForm = false;
             this.userSelected = null;
             this.users = await UserService.getUsers();
             this.$utl.hiddenLoader();
