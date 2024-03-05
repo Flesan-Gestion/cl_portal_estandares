@@ -1,3 +1,4 @@
+import {environment} from '../../environment/environment';
 export default [
     {
         name: 'Users',
@@ -6,7 +7,7 @@ export default [
         icon: 'pi-user',
         component: () => import('./UsersPage.vue'),
         meta: {
-            roles: ['ADMINISTRADOR']
+            roles: [environment.rol.ADMINISTRADOR]
         }
     }
 ]

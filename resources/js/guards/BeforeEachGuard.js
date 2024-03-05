@@ -21,7 +21,7 @@ export default async (to, from, next) => {
     // Verificamos si la ruta tiene role(s) específicos y el usuario lo(s) cumple
     if (
         Array.isArray(to.meta.roles) &&
-        !to.meta.roles.includes(Utilities.store.state.user.data.rol.nombre.toUpperCase())
+        !to.meta.roles.includes(Utilities.store.state.user.data.rol.id_rol)
     ) {
         Utilities.genToast(ToastTypeMessage.USER_ROL_NOT_ALLOWED);
         next(from.path);
