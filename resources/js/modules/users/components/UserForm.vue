@@ -12,17 +12,14 @@
                 <InputText v-model="formUser.controls.email.value" :class="formUser.controls.email.getClass()" />
             </FormGroup>
 
-            <FormGroup label="Nombres" :control="formUser.controls.nombres" customClass="col-12 md:col-4">
+            <FormGroup label="Nombres" :control="formUser.controls.nombres" customClass="col-12 md:col-6">
                 <InputText v-model="formUser.controls.nombres.value" :class="formUser.controls.nombres.getClass()" />
             </FormGroup>
 
-            <FormGroup label="Apellidos" :control="formUser.controls.apellidos" customClass="col-12 md:col-4">
+            <FormGroup label="Apellidos" :control="formUser.controls.apellidos" customClass="col-12 md:col-6">
                 <InputText v-model="formUser.controls.apellidos.value" :class="formUser.controls.apellidos.getClass()" />
             </FormGroup>
 
-            <FormGroup label="DNI" :control="formUser.controls.dni" customClass="col-12 md:col-4">
-                <InputText v-model="formUser.controls.dni.value" :class="formUser.controls.dni.getClass()" />
-            </FormGroup>
 
             <FormGroup label="Perfil" :control="formUser.controls.profile" customClass="col-12">
                 <Dropdown v-model="formUser.controls.profile.value" :options="roles" optionLabel="nombre"
@@ -57,7 +54,6 @@ export default {
                 email: this.$sstFormControl(null, [this.$sstRule.REQUIRED, this.$sstRule.EMAIL]),
                 nombres: this.$sstFormControl(null, [this.$sstRule.REQUIRED]),
                 apellidos: this.$sstFormControl(null, [this.$sstRule.REQUIRED]),
-                dni: this.$sstFormControl(null, [this.$sstRule.REQUIRED]),
                 profile: this.$sstFormControl(null, [this.$sstRule.REQUIRED]),
             }),
             countries: ['PE', 'CL'],
@@ -77,7 +73,6 @@ export default {
                 email: newValue.username,
                 nombres: newValue.nombres,
                 apellidos: newValue.apellidos,
-                dni: newValue.dni,
                 profile: newValue.rol.id_rol,
                 country: newValue.pais
             })

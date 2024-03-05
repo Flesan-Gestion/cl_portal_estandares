@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Interfaces\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Arr;
 use Laravel\Socialite\Facades\Socialite;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Cache;
@@ -31,6 +32,8 @@ class AuthController extends Controller
             $googleUser = Socialite::driver('google')->stateless()->user();
             $user = $this->repository->getUserByEmail($googleUser->email);
 
+            $this->repository->update($user->id_aplicacion_usuario, array("avatar" => $googleUser->avatar));
+            $user->avatar = $googleUser->avatar;
             $claims = array();
 
             if ($user == null) {

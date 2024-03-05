@@ -26,8 +26,6 @@
                 <Column field="username" bodyClass="no-wrap-container max-w-9rem" sortable header="EMAIL"
                     headerClass="w-9rem">
                 </Column>
-                <Column field="dni" bodyClass="no-wrap-container max-w-5rem" sortable header="DNI" headerClass="w-5rem">
-                </Column>
                 <Column field="pais" bodyClass="no-wrap-container max-w-2rem font-bold text-center" sortable header="PAIS"
                     headerClass="w-2rem">
                 </Column>
