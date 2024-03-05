@@ -17,7 +17,6 @@ export default async (to, from, next) => {
         next({ name: "Login" });
         return;
     }
-
     // Verificamos si la ruta tiene role(s) específicos y el usuario lo(s) cumple
     if (
         Array.isArray(to.meta.roles) &&

@@ -1,6 +1,6 @@
 
 import { SidebarTypeMessage } from "./sidebar-type-item";
-
+import { environment } from "../../environment/environment";
 
 
 export const SidebarItems = [
@@ -15,6 +15,6 @@ export const SidebarItems = [
         pathName: 'Users',
         icon: 'pi-user',
         type: SidebarTypeMessage.ITEM,
-        roles: ['ADMINISTRADOR']
+        roles: [environment.rol.ADMINISTRADOR]
     },
 ]
