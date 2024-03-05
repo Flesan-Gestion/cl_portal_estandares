@@ -82,5 +82,11 @@ export const ToastsMessages = [
     summary: 'Operación exitosa',
     detail: 'El registro ha sido eliminado'
   },
+  {
+    title: ToastTypeMessage.TOKEN_EXPIRED_OR_INVALID,
+    severity: ToastSeverityMessage.ERROR,
+    summary: 'Token Expirado o Inválido',
+    detail: 'Es necesario un nuevo inicio de sesión'
+  },
 ]
 
