@@ -100,7 +100,7 @@ export class Utilities {
     }
 
     static accessRol(roles){
-        return roles.includes(store.state.user.data?.rol?.nombre);
+        return roles.includes(store.state.user.data?.rol?.id_rol);
     }
 
 }

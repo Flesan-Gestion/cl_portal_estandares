@@ -30,8 +30,8 @@ export default {
         const decodedPayload = atob(tokenPayload);
         const decodedUnicodePayload = decodeURIComponent(escape(decodedPayload));
         const payload = JSON.parse(decodedUnicodePayload);
-        this.$utl.store.commit('user/setUser', payload.user);
-        this.$utl.store.commit('user/setToken', token);
+        this.$store.commit('user/setUser', payload.user);
+        this.$store.commit('user/setToken', token);
 
         await this.$utl.sleep(2000);
         this.$utl.hiddenLoader();

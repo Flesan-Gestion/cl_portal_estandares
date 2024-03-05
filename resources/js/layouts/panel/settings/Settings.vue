@@ -26,7 +26,7 @@ export default {
     methods: {
         logout() {
             this.$utl.genToast(this.$tstType.LOGOUT_SUCCESS);
-            this.$utl.store.commit('user/clear');
+            this.$store.commit('user/clear');
             this.$utl.navigate('Login');
         }
     }

@@ -9,7 +9,7 @@
                 class="p-datatable-sm overflow-auto" tableStyle="min-width:60rem">
                 <template #header>
                     <div class="flex flex-column sm:flex-row justify-content-between">
-                        <Button type="button" severity="success" label="Registrar" icon="pi pi-user-plus"
+                        <Button type="button" severity="success" label="Nuevo Usuario" icon="pi pi-user-plus"
                             @click="showUserFormModal(null)" />
 
                         <InputGroup class="w-auto sm:w-20rem mt-2 sm:mt-0">
