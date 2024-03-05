@@ -32,13 +32,14 @@ class AuthController extends Controller
             $googleUser = Socialite::driver('google')->stateless()->user();
             $user = $this->repository->getUserByEmail($googleUser->email);
 
-            $this->repository->update($user->id_aplicacion_usuario, array("avatar" => $googleUser->avatar));
-            $user->avatar = $googleUser->avatar;
-            $claims = array();
+
 
             if ($user == null) {
                 return redirect('/error/403');
             } else {
+                $this->repository->update($user->id_aplicacion_usuario, array("avatar" => $googleUser->avatar));
+                $user->avatar = $googleUser->avatar;
+                $claims = array();
                 $claims['user'] = $user;
             }
 
