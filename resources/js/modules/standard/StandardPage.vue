@@ -43,6 +43,8 @@
                     header="REQUERIMIENTO"></Column>
                 <Column bodyClass="no-wrap-container max-w-12rem" headerClass="w-12rem" field="descripcion" sortable
                     header="DESCRIPCIÓN"></Column>
+                <Column bodyClass="no-wrap-container max-w-12rem" headerClass="w-12rem" field="informacion" sortable
+                    header="INFORMACION"></Column>
                 <Column bodyClass="no-wrap-container max-w-7rem" headerClass="w-4rem" header="ACCIONES">
 
                     <template #body="{ data }">
