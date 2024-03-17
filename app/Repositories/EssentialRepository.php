@@ -17,7 +17,6 @@ class EssentialRepository implements EssentialRepositoryInterface
 
     public function all(array $columns = ['*'], array $relations = []): Collection
     {
-
         return $this->model->with($relations)->where('enable', 1)->orderByDesc($this->model->getKeyName())->get($columns);
     }
 

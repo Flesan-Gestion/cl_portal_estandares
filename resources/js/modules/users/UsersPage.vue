@@ -97,7 +97,7 @@ export default {
     methods: {
         disableUser(id) {
             this.$utl.showConfirmation({
-                message: 'Esta usuario se cambiará a un estado de inactivo',
+                message: 'Se deshabilitará el usuario seleccionado',
                 accept: async () => {
                     this.$utl.showLoader();
                     await UserService.disable(id);
@@ -110,7 +110,7 @@ export default {
         },
         enableUser(id) {
             this.$utl.showConfirmation({
-                message: 'Se activará el usuario seleccionado',
+                message: 'Se habilitará el usuario seleccionado',
                 accept: async () => {
                     this.$utl.showLoader();
                     await UserService.enable(id);

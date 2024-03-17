@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\{
     AuthController,
+    CommentController,
+    RealStateController,
     RolController,
+    SpecialityController,
     StandardController,
     UserController,
     UserRolController
@@ -31,11 +34,13 @@ Route::get('/auth/getToken/{email}', [AuthController::class, 'getToken']);
 
 
 Route::group(['middleware' => ['jwt.verify']], function () {
-    Route::get('/standard/all', [StandardController::class, 'all']);
+    Route::get('/standard/allViewer', [StandardController::class, 'allViewer']);
+    Route::get('/standard/allAdministrator', [StandardController::class, 'allAdministrator']);
+    Route::get('/standard/generateCode/{idSpeciality}', [StandardController::class, 'generateCode']);
     Route::post('/standard/create', [StandardController::class, 'create']);
-    Route::put('/standard/saveComment/{id}', [StandardController::class, 'saveComment']);
     Route::put('/standard/update/{id}', [StandardController::class, 'update']);
-    Route::put('/standard/delete/{id}', [StandardController::class, 'delete']);
+    Route::put('/standard/enable/{id}', [StandardController::class, 'enable']);
+    Route::put('/standard/disable/{id}', [StandardController::class, 'disable']);
 
     Route::get('/user/getUsers', [UserController::class, 'getUsers']);
     Route::post('/user/create', [UserController::class, 'create']);
@@ -47,4 +52,12 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::post('/userRol/create', [UserRolController::class, 'create']);
     Route::put('/userRol/updateRol/{id}', [UserRolController::class, 'updateRol']);
+
+    Route::get('/speciality/all', [SpecialityController::class, 'all']);
+
+    Route::get('/realEstate/all', [RealStateController::class, 'all']);
+
+    Route::get('/comment/getByStandard/{idStandard}', [CommentController::class, 'getByStandard']);
+    Route::post('/comment/create', [CommentController::class, 'create']);
+
 });

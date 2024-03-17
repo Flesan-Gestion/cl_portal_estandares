@@ -1,6 +1,8 @@
 import _ from 'lodash';
 window._ = _;
-import store from './store/index'
+import store from './store/index';
+import { Utilities } from './shared/classes/Utilities';
+import { ToastTypeMessage } from './shared/constants/toast-type-message';
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -21,6 +23,18 @@ axios.interceptors.request.use(
     },
     function (error) {
         // Manejo de errores en las peticiones
+        return Promise.reject(error);
+    }
+);
+
+axios.interceptors.response.use(
+    (response) => {
+        // Hacer algo con la respuesta exitosa
+        return response;
+    },
+    (error) => {
+        Utilities.hiddenLoader();
+        Utilities.genToast(ToastTypeMessage.OPERATION_ERROR);
         return Promise.reject(error);
     }
 );

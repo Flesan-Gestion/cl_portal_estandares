@@ -72,13 +72,23 @@ export class Utilities {
     }
 
     // Generar un mensaje toast
-    static genToast(typeMessage) {
+    static genToast(typeMessage, position = 'right') {
         const message = ToastsMessages.find((m) => m.title == typeMessage);
+        let group;
+        switch (position) {
+            case 'right':
+                group = 'tr';
+                break;
+            case 'left':
+                group = 'tl';
+                break;
+        }
         const toastBody = {
             severity: message?.severity,
             summary: message?.summary,
             detail: message?.detail,
             life: 4500,
+            group: group
         };
         store.commit("toast/show", toastBody);
     }
@@ -99,7 +109,7 @@ export class Utilities {
         return Assets.svg[fileName];
     }
 
-    static accessRol(roles){
+    static accessRol(roles) {
         return roles.includes(store.state.user.data?.rol?.id_rol);
     }
 

@@ -3,16 +3,19 @@ import store from '../../../store/index';
 export class StandardService {
     constructor() { }
 
-    static async all() {
-        const standards = await axios.get(`/api/standard/all`);
+    static async allViewer() {
+        const standards = await axios.get(`/api/standard/allViewer`);
         return standards.data;
     }
 
-    static async saveComment(id, comment) {
-        return await axios.put(`/api/standard/saveComment/${id}`, {
-            comment,
-            user: store.state.user.data.email
-        });
+    static async allAdministrator() {
+        const standards = await axios.get(`/api/standard/allAdministrator`);
+        return standards.data;
+    }
+
+    static async generateCode(idSpeciality) {
+        const code = await axios.get(`/api/standard/generateCode/${idSpeciality}`);
+        return code.data;
     }
 
     static async create(standard) {
@@ -23,33 +26,41 @@ export class StandardService {
         return await axios.put(`/api/standard/update/${id}`, standard);
     }
 
-    static async delete(id) {
-        return await axios.put(`/api/standard/delete/${id}`, {
+    static async enable(id) {
+        return await axios.put(`/api/standard/enable/${id}`, {
+            user: store.state.user.data.email
+        });
+    }
+
+    static async disable(id) {
+        return await axios.put(`/api/standard/disable/${id}`, {
             user: store.state.user.data.email
         });
     }
 
     static formatNewStandard(standard) {
         return {
-            identifier: standard.identifier,
-            especialidad: standard.especialidad,
-            inmobiliaria: standard.inmobiliaria,
-            tipo_definicion: standard.tipo_definicion,
-            requerimiento: standard.requerimiento,
-            descripcion: standard.descripcion,
-            informacion: standard.informacion,
+            st_code: standard.code,
+            st_code_number: parseInt(standard.code.split('-')[1]),
+            st_speciality_id: standard.speciality,
+            st_real_estate_id: standard.realEstate,
+            st_type_definition: standard.typeDefinition,
+            st_request: standard.request,
+            st_description: standard.description,
+            st_information: standard.information,
             user_create: store.state.user.data.email,
         }
     }
 
     static formatEditStandard(standard) {
         return {
-            especialidad: standard.especialidad,
-            inmobiliaria: standard.inmobiliaria,
-            tipo_definicion: standard.tipo_definicion,
-            requerimiento: standard.requerimiento,
-            descripcion: standard.descripcion,
-            informacion: standard.informacion,
+            st_code: standard.code,
+            st_speciality_id: standard.speciality,
+            st_real_estate_id: standard.realEstate,
+            st_type_definition: standard.typeDefinition,
+            st_request: standard.request,
+            st_description: standard.description,
+            st_information: standard.information,
             user_update: store.state.user.data.email,
         }
     }

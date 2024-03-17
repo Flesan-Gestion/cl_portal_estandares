@@ -88,5 +88,29 @@ export const ToastsMessages = [
     summary: 'Token Expirado o Inválido',
     detail: 'Es necesario un nuevo inicio de sesión'
   },
+  {
+    title: ToastTypeMessage.STANDARD_DISABLED,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Operación exitosa',
+    detail: 'El estándar inmobiliario ha sido deshabilitado'
+  },
+  {
+    title: ToastTypeMessage.STANDARD_ENABLED,
+    severity: ToastSeverityMessage.SUCCESS,
+    summary: 'Operación exitosa',
+    detail: 'El estándar inmobiliario ha sido habilitado'
+  },
+  {
+    title: ToastTypeMessage.OPERATION_ERROR,
+    severity: ToastSeverityMessage.ERROR,
+    summary: 'Hubo un problema interno',
+    detail: 'Contacta con la área de sistemas'
+  },
+  {
+    title: ToastTypeMessage.COMMENT_ERROR,
+    severity: ToastSeverityMessage.WARN,
+    summary: 'Hubo un problema',
+    detail: 'No has escrito un comentario aún'
+  },
 ]
 

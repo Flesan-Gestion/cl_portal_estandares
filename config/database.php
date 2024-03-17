@@ -95,18 +95,18 @@ return [
         ],
 
         
-        'dw_chile' => [
+        'standard' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL_DW'),
-            'host' => env('DB_HOST_DW_CL'),
-            'port' => env('DB_PORT_DW_CL'),
-            'database' => env('DB_DATABASE_DW_CL'),
-            'username' => env('DB_USERNAME_DW_CL'),
-            'password' => env('DB_PASSWORD_DW_CL'),
+            'host' => env('DB_HOST_STANDARD'),
+            'port' => env('DB_PORT_STANDARD'),
+            'database' => env('DB_DATABASE_STANDARD'),
+            'username' => env('DB_USERNAME_STANDARD'),
+            'password' => env('DB_PASSWORD_STANDARD'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'schema' => env('DB_SCHEMA_DW_CL'),
+            'schema' => env('DB_SCHEMA_STANDARD'),
             'sslmode' => 'prefer',
         ],
 

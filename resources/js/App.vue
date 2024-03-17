@@ -1,6 +1,7 @@
 <template>
     <Loader />
-    <Toast position="top-left" />
+    <Toast position="top-left" group="tl" />
+    <Toast position="top-right" group="tr" />
     <ConfirmationModal />
     <router-view></router-view>
 </template>
@@ -23,6 +24,7 @@ export default {
 
                     if (Date.now() >= payload.exp * 1000) {
                         this.$utl.genToast(this.$tstType.TOKEN_EXPIRED_OR_INVALID);
+                        this.$store.commit('user/clear');
                         this.$utl.hiddenLoader();
                         this.$utl.navigate('Login');
                     }

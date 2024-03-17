@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property integer $correlativo
- * @property string $identifier
- * @property string $especialidad
- * @property string $inmobiliaria
- * @property string $tipo_definicion
- * @property string $requerimiento
- * @property string $descripcion
- * @property string $informacion
- * @property string $comentarios
- * @property integer $enable
- * @property string $user_create
- * @property string $user_update
+ * @property integer $st_speciality_id
+ * @property integer $st_real_estate_id
+ * @property integer $st_id
+ * @property string $st_type_definition
+ * @property string $st_request
+ * @property string $st_description
+ * @property string $st_information
+ * @property string $st_code
  * @property string $created_at
  * @property string $updated_at
- * @property string $user_comment
+ * @property string $user_create
+ * @property string $user_update
+ * @property integer $enable
+ * @property Speciality $speciality
+ * @property RealEstate $realEstate
  */
 class Standard extends Model
 {
@@ -28,24 +28,40 @@ class Standard extends Model
      * 
      * @var string
      */
-    protected $table = 'estandar_inmobiliario';
+    protected $table = 'standard';
 
     /**
      * The primary key for the model.
      * 
      * @var string
      */
-    protected $primaryKey = 'correlativo';
+    protected $primaryKey = 'st_id';
 
     /**
      * @var array
      */
-    protected $fillable = ['correlativo', 'identifier', 'especialidad', 'inmobiliaria', 'tipo_definicion', 'requerimiento', 'descripcion', 'informacion', 'comentarios', 'enable', 'user_create', 'user_update', 'created_at', 'updated_at', 'user_comment'];
+    protected $fillable = ['st_speciality_id', 'st_real_estate_id', 'st_type_definition', 'st_request', 'st_description', 'st_information', 'st_code', 'st_code_number', 'created_at', 'updated_at', 'user_create', 'user_update', 'enable'];
 
     /**
      * The connection name for the model.
      * 
      * @var string
      */
-    protected $connection = 'dw_chile';
+    protected $connection = 'standard';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function speciality()
+    {
+        return $this->belongsTo('App\Models\Speciality', 'st_speciality_id', 'sp_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function realEstate()
+    {
+        return $this->belongsTo('App\Models\RealEstate', 'st_real_estate_id', 're_id');
+    }
 }

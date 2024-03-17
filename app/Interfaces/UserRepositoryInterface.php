@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 interface UserRepositoryInterface
 {
     function getUserByEmail($email);
+
+    function getUserByEmailForComments($email);
     
     function getUsers();
 

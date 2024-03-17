@@ -16,9 +16,14 @@ class StandardController extends Controller
         $this->repository = $repository;
     }
 
-    function all()
+    function allViewer()
     {
-        return $this->repository->all();
+        return $this->repository->allViewer();
+    }
+
+    function allAdministrator()
+    {
+        return $this->repository->allAdministrator();
     }
 
     function create(Request $request)
@@ -31,17 +36,18 @@ class StandardController extends Controller
         return $this->repository->update($id, $request->all());
     }
 
-    function saveComment(Request $request, $id)
+    function enable(Request $request, $id)
     {
-        return $this->repository->update($id, array(
-            "comentarios" => $request->all()['comment'],
-            "user_update" => $request->all()['user'],
-            "user_comment" => $request->all()['user'],
-        ));
+        return $this->repository->enable($id, $request->all()['user']);
     }
 
-    function delete(Request $request, $id)
+    function disable(Request $request, $id)
     {
-        return $this->repository->update($id, array("enable" => 0, "user_update" => $request->all()['user']));
+        return $this->repository->disable($id, $request->all()['user']);
+    }
+
+    function generateCode($idSpeciality)
+    {
+        return $this->repository->generateCode($idSpeciality);
     }
 }
