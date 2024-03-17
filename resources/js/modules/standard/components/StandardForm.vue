@@ -45,7 +45,7 @@
             <FormGroup label="Información" :control="formStandard.controls.information" customClass="col-12">
                 <Textarea v-model="formStandard.controls.information.value" rows="3"
                     :disabled="this.standardSelected && !isEditable"
-                    :class="`w-full ${formStandard.controls.information.getClass()}`" />
+                    :class="` ${formStandard.controls.information.getClass()}`" />
             </FormGroup>
 
             <div
@@ -77,7 +77,7 @@ export default {
                 typeDefinition: this.$sstFormControl(null, [this.$sstRule.REQUIRED]),
                 request: this.$sstFormControl(null),
                 description: this.$sstFormControl(null, [this.$sstRule.REQUIRED]),
-                information: this.$sstFormControl(null, [this.$sstRule.REQUIRED]),
+                information: this.$sstFormControl(null, [this.$sstRule.REQUIRED_AREA]),
             }),
             isEditable: false,
         }
@@ -95,6 +95,7 @@ export default {
     },
     methods: {
         setStandardData(standard) {
+            console.log(standard);
             this.formStandard.matchValue({
                 code: standard.st_code,
                 speciality: standard.speciality.sp_id,

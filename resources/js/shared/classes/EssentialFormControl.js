@@ -15,7 +15,7 @@ export class EssentialFormControl {
 
     // False = Error
     // True = Todo OK
-    validate() {
+    validate(key = '') {
         if (this.doValidate && this.visible) {
             for (const ruleName of this.rules) {
                 const rule = FormRules.find(fr => fr.name == ruleName);

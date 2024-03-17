@@ -21,4 +21,9 @@ export const FormRules = [
         message: 'Este campo solo acepta números',
         regex: /^[0-9]+$/
     },
+    {
+        name: FormTypeRule.REQUIRED_AREA,
+        message: 'Este campo es requerido',
+        regex: /^[^ ].{0,}/
+    },
 ]

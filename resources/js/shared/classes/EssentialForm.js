@@ -11,7 +11,7 @@ export class EssentialForm {
         Object.keys(this.controls).forEach((key) => {
             context.$watch(() => this.controls[key].value, () => {
                 // Validar el control cuando cambia su propiedad 'value'
-                this.controls[key].validate();
+                this.controls[key].validate(key);
             });
         });
     }
