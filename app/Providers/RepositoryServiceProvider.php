@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Interfaces\{
     CommentRepositoryInterface,
+    EmailRepositoryInterface,
     EssentialRepositoryInterface,
     PrefixCodeRepositoryInterface,
     RealEstateRepositoryInterface,
@@ -15,6 +16,7 @@ use App\Interfaces\{
 };
 use App\Repositories\{
     CommentRepository,
+    EmailRepository,
     EssentialRepository,
     PrefixCodeRepository,
     RealEstateRepository,
@@ -53,5 +55,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(RealEstateRepositoryInterface::class, RealEstateRepository::class);
         $this->app->bind(PrefixCodeRepositoryInterface::class, PrefixCodeRepository::class);
         $this->app->bind(CommentRepositoryInterface::class, CommentRepository::class);
+        $this->app->bind(EmailRepositoryInterface::class, EmailRepository::class);
     }
 }

@@ -9,8 +9,10 @@ interface UserRepositoryInterface
 {
     function getUserByEmail($email);
 
+    function getUserByRol($idRol);
+
     function getUserByEmailForComments($email);
-    
+
     function getUsers();
 
     function findById(
@@ -22,5 +24,4 @@ interface UserRepositoryInterface
     function create(array $payload): ?Model;
 
     function update(int $modelId, array $payload): bool;
-
 }

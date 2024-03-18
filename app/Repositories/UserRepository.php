@@ -37,6 +37,17 @@ class UserRepository implements UserRepositoryInterface
         return $user;
     }
 
+    function getUserByRol($idRol) {
+        $users =  $this->model->with('usuarioRols')
+        ->whereHas('usuarioRols', function ($query) use ($idRol) {
+            $query->where('id_rol', $idRol);
+        })
+        ->where('id_aplicacion', env('ID_APLICACION'))
+        ->where('estado_sesion', 1)
+        ->get(['id_aplicacion_usuario', 'username', 'name', 'estado_sesion', 'dni', 'nombres', 'apellidos', 'pais', 'avatar']);
+        return $users;  
+    }
+
     function getUserByEmailForComments($email)
     {
         $user = $this->model
