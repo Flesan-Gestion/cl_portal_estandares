@@ -4,20 +4,16 @@
             <DataTable id="datatable-facturas" v-model:filters="dataTableConfig.filters" :value="standards" paginator
                 showGridlines :rows="dataTableConfig.rows" :rowsPerPageOptions="dataTableConfig.rowsPerPageOptions"
                 dataKey="id" filterDisplay="menu" class="p-datatable-sm overflow-auto" tableStyle="min-width: 70rem;"
-                @filter="eventFilter" :globalFilterFields="dataTableConfig.globalFilterFields"
+                :globalFilterFields="dataTableConfig.globalFilterFields"
                 :paginatorTemplate="dataTableConfig.paginatorTemplate"
                 :currentPageReportTemplate="dataTableConfig.currentPageReportTemplate">
                 <template #header>
                     <div class="flex flex-column sm:flex-row justify-content-between">
-                        <div class="flex gap-2">
-                            <Button v-if="this.$utl.accessRol([this.$env.rol.ADMINISTRADOR])"
-                                label="Nuevo Estándar" icon="pi pi-tags" 
-                                @click="showStandardFormModal()" />
-                            <Button icon="pi pi-file-export" severity="success"
-                                 @click="exportToExcel()"
+                        <div class="flex gap-2" v-if="this.$utl.accessRol([this.$env.rol.ADMINISTRADOR])">
+                            <Button label="Nuevo Estándar" icon="pi pi-tags" @click="showStandardFormModal()" />
+                            <Button icon="pi pi-file-export" severity="success" @click="exportToExcel()"
                                 label="Exportar Excel" />
-                            <Button icon="pi pi-file-export" severity="help"
-                                 @click="exportToPDF()"
+                            <Button icon="pi pi-file-export" severity="help" @click="exportToPDF()"
                                 label="Exportar PDF" />
                         </div>
 
@@ -123,6 +119,8 @@ import { RealEstateService } from './services/RealEstateService';
 import StandardForm from './components/StandardForm.vue';
 import Comments from './components/Comments.vue';
 import XLSX from "xlsx/dist/xlsx.full.min";
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable'
 
 export default {
     components: {
@@ -215,7 +213,6 @@ export default {
             })
         },
         exportToExcel() {
-            this.$utl.showLoader();
             const standardsToExcel = this.standards.map(s => {
                 return {
                     'Código': s.st_code,
@@ -224,7 +221,7 @@ export default {
                     'Requerimientos': s.st_request,
                     'Descripción': s.st_description,
                     'Información': s.st_information,
-                    'Estado': s.enable == 1 ? 'Activo': 'Inactivo',
+                    'Estado': s.enable == 1 ? 'Activo' : 'Inactivo',
                     'Creación': `${this.$utl.formatDate(new Date(s.created_at))} ${this.$utl.formatTime(new Date(s.created_at))}`,
                     'Última Actualización': `${this.$utl.formatDate(new Date(s.updated_at))} ${this.$utl.formatTime(new Date(s.updated_at))}`,
                 }
@@ -236,10 +233,33 @@ export default {
             XLSX.utils.book_append_sheet(wb, ws, 'Estándares');
 
             XLSX.writeFile(wb, `ESTÁNDARES INMOBILIARIOS.xlsx`);
-            this.$utl.hiddenLoader();
         },
-        exportToPDF(){
+        exportToPDF() {
+            const columns = ['Código', 'Especialidad', 'Inmobiliaria', 'Requerimientos', 'Descripción', 'Información', 'Estado']
+            const rows = this.standards.map(s => {
+                return [
+                    { content: s.st_code, styles: { minCellWidth: 18 } },
+                    s.speciality.sp_description,
+                    s.real_estate.re_description,
+                    s.st_request,
+                    { content: s.st_description, styles: { minCellWidth: 40 } },
+                    { content: s.st_information, styles: { minCellWidth: 40 } },
+                    { content: s.enable == 1 ? 'Activo' : 'Inactivo', styles: { minCellWidth: 16 } },
 
+                ]
+            })
+            const doc = new jsPDF();
+            autoTable(doc, {
+                head: [columns],
+                body: [
+                    ...rows
+                ],
+                theme: 'grid',
+                headStyles: {
+                    fillColor: [255, 0, 14] 
+                }
+            });
+            doc.save('ESTÁNDARES INMOBILIARIOS.pdf');
         },
         async onSaveStandard() {
             this.showCommentForm = false;
