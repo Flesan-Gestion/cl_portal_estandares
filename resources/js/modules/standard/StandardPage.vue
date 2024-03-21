@@ -4,7 +4,7 @@
             <DataTable id="datatable-facturas" v-model:filters="dataTableConfig.filters" :value="standards" paginator
                 showGridlines :rows="dataTableConfig.rows" :rowsPerPageOptions="dataTableConfig.rowsPerPageOptions"
                 dataKey="id" filterDisplay="menu" class="p-datatable-sm overflow-auto" tableStyle="min-width: 70rem;"
-                :globalFilterFields="dataTableConfig.globalFilterFields"
+                @filter="eventFilter" :globalFilterFields="dataTableConfig.globalFilterFields"
                 :paginatorTemplate="dataTableConfig.paginatorTemplate"
                 :currentPageReportTemplate="dataTableConfig.currentPageReportTemplate">
                 <template #header>
@@ -130,6 +130,7 @@ export default {
     data() {
         return {
             standards: [],
+            filteredStandards: [],
             loadingRows: false,
             dataTableConfig: {
                 rows: 20,
@@ -168,6 +169,7 @@ export default {
                     this.standards = await StandardService.allViewer();
                     break;
             }
+            this.filteredStandards = [...this.standards];
         },
         async showComments(standard) {
             this.$utl.showLoader();
@@ -175,6 +177,9 @@ export default {
             this.showCommentForm = true;
             this.comments = await CommentService.getByStandard(standard.st_id);
             this.$utl.hiddenLoader();
+        },
+        eventFilter(event) {
+            this.filteredStandards = event.filteredValue;
         },
         clearComments() {
             this.comments = [];
@@ -213,7 +218,7 @@ export default {
             })
         },
         exportToExcel() {
-            const standardsToExcel = this.standards.map(s => {
+            const standardsToExcel = this.filteredStandards.map(s => {
                 return {
                     'Código': s.st_code,
                     'Especialidad': s.speciality.sp_description,
@@ -236,11 +241,11 @@ export default {
         },
         exportToPDF() {
             const columns = ['Código', 'Especialidad', 'Inmobiliaria', 'Requerimientos', 'Descripción', 'Información', 'Estado']
-            const rows = this.standards.map(s => {
+            const rows = this.filteredStandards.map(s => {
                 return [
                     { content: s.st_code, styles: { minCellWidth: 18 } },
                     s.speciality.sp_description,
-                    s.real_estate.re_description,
+                    { content: s.real_estate.re_description, styles: { minCellWidth: 20 } },
                     s.st_request,
                     { content: s.st_description, styles: { minCellWidth: 40 } },
                     { content: s.st_information, styles: { minCellWidth: 40 } },
@@ -256,7 +261,7 @@ export default {
                 ],
                 theme: 'grid',
                 headStyles: {
-                    fillColor: [255, 0, 14] 
+                    fillColor: [255, 0, 14]
                 }
             });
             doc.save('ESTÁNDARES INMOBILIARIOS.pdf');
