@@ -9,9 +9,18 @@
                 :currentPageReportTemplate="dataTableConfig.currentPageReportTemplate">
                 <template #header>
                     <div class="flex flex-column sm:flex-row justify-content-between">
-                        <Button v-if="this.$utl.accessRol([this.$env.rol.ADMINISTRADOR])" type="button"
-                            label="Nuevo Estándar" icon="pi pi-tags" severity="success"
-                            @click="showStandardFormModal()" />
+                        <div class="flex gap-2">
+                            <Button v-if="this.$utl.accessRol([this.$env.rol.ADMINISTRADOR])"
+                                label="Nuevo Estándar" icon="pi pi-tags" 
+                                @click="showStandardFormModal()" />
+                            <Button icon="pi pi-file-export" severity="success"
+                                 @click="exportToExcel()"
+                                label="Exportar Excel" />
+                            <Button icon="pi pi-file-export" severity="help"
+                                 @click="exportToPDF()"
+                                label="Exportar PDF" />
+                        </div>
+
 
                         <InputGroup class="w-auto sm:w-20rem mt-2 sm:mt-0">
                             <InputGroupAddon>
@@ -113,6 +122,8 @@ import { CommentService } from './services/CommentService';
 import { RealEstateService } from './services/RealEstateService';
 import StandardForm from './components/StandardForm.vue';
 import Comments from './components/Comments.vue';
+import XLSX from "xlsx/dist/xlsx.full.min";
+
 export default {
     components: {
         Comments,
@@ -121,7 +132,6 @@ export default {
     data() {
         return {
             standards: [],
-            filteredStandards: [],
             loadingRows: false,
             dataTableConfig: {
                 rows: 20,
@@ -151,9 +161,6 @@ export default {
         this.$utl.hiddenLoader();
     },
     methods: {
-        eventFilter(event) {
-            this.filteredStandards = event.standards;
-        },
         async getStandards() {
             switch (this.$store.state.user.data.rol.id_rol) {
                 case this.$env.rol.ADMINISTRADOR:
@@ -206,6 +213,33 @@ export default {
                 },
                 reject: () => { },
             })
+        },
+        exportToExcel() {
+            this.$utl.showLoader();
+            const standardsToExcel = this.standards.map(s => {
+                return {
+                    'Código': s.st_code,
+                    'Especialidad': s.speciality.sp_description,
+                    'Inmobiliaria': s.real_estate.re_description,
+                    'Requerimientos': s.st_request,
+                    'Descripción': s.st_description,
+                    'Información': s.st_information,
+                    'Estado': s.enable == 1 ? 'Activo': 'Inactivo',
+                    'Creación': `${this.$utl.formatDate(new Date(s.created_at))} ${this.$utl.formatTime(new Date(s.created_at))}`,
+                    'Última Actualización': `${this.$utl.formatDate(new Date(s.updated_at))} ${this.$utl.formatTime(new Date(s.updated_at))}`,
+                }
+            })
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.json_to_sheet(standardsToExcel);
+
+            XLSX.utils.book_append_sheet(wb, ws, 'Estándares');
+
+            XLSX.writeFile(wb, `ESTÁNDARES INMOBILIARIOS.xlsx`);
+            this.$utl.hiddenLoader();
+        },
+        exportToPDF(){
+
         },
         async onSaveStandard() {
             this.showCommentForm = false;
