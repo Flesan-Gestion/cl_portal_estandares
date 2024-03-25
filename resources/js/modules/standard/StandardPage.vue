@@ -27,10 +27,10 @@
                         </InputGroup>
                     </div>
                 </template>
-                <Column bodyClass="no-wrap-container max-w-7rem" headerClass="w-7rem" field="st_code" header="CÓDIGO">
+                <Column bodyClass=" max-w-7rem" headerClass="w-7rem" field="st_code" header="CÓDIGO">
                 </Column>
                 <Column filterField="speciality" :showFilterMatchModes="false" :filterMenuStyle="{ width: '14rem' }"
-                    bodyClass="no-wrap-container max-w-10rem" headerClass="w-10rem" sortable header="ESPECIALIDAD">
+                    bodyClass=" max-w-10rem" headerClass="w-10rem" sortable header="ESPECIALIDAD">
 
                     <template #body="{ data }">
                         {{ data.speciality.sp_description }}
@@ -43,7 +43,7 @@
                     </template>
                 </Column>
                 <Column filterField="real_estate" :showFilterMatchModes="false" :filterMenuStyle="{ width: '14rem' }"
-                    bodyClass="no-wrap-container max-w-10rem" headerClass="w-10rem" sortable header="INMOBILIARIA">
+                    bodyClass=" max-w-10rem" headerClass="w-10rem" sortable header="INMOBILIARIA">
                     <template #body="{ data }">
                         {{ data.real_estate.re_description }}
                     </template>
@@ -54,15 +54,14 @@
                         </MultiSelect>
                     </template>
                 </Column>
-                <Column bodyClass="no-wrap-container max-w-12rem" headerClass="w-12rem" field="st_information" sortable
+                <Column bodyClass=" max-w-12rem" headerClass="w-12rem" field="st_information" sortable
                     header="REQUERIMIENTOS"></Column>
-                <Column bodyClass="no-wrap-container max-w-10rem" headerClass="w-10rem" field="st_description" sortable
+                <Column bodyClass=" max-w-10rem" headerClass="w-10rem" field="st_description" sortable
                     header="DESCRIPCIÓN"></Column>
-                <Column bodyClass="no-wrap-container max-w-12rem" headerClass="w-12rem" field="st_information" sortable
+                <Column bodyClass=" max-w-12rem" headerClass="w-12rem" field="st_information" sortable
                     header="INFORMACION"></Column>
-                <Column v-if="this.$utl.accessRol([this.$env.rol.ADMINISTRADOR])"
-                    bodyClass="no-wrap-container text-center max-w-5rem" headerClass="w-5rem" field="enable" sortable
-                    header="ESTADO">
+                <Column v-if="this.$utl.accessRol([this.$env.rol.ADMINISTRADOR])" bodyClass=" text-center max-w-5rem"
+                    headerClass="w-5rem" field="enable" sortable header="ESTADO">
                     <template #body="{ data }">
                         <Tag :value="data.enable == 0 ? 'INACTIVO' : 'ACTIVO'"
                             :severity="data.enable == 0 ? 'danger' : 'success'" class="font-bold"
@@ -70,7 +69,7 @@
                         </Tag>
                     </template>
                 </Column>
-                <Column bodyClass="no-wrap-container max-w-9rem" headerClass="w-9rem" header="ACCIONES">
+                <Column bodyClass=" max-w-9rem" headerClass="w-9rem" header="ACCIONES">
 
                     <template #body="{ data }">
                         <div class="flex justify-content-center gap-2 w-full">
