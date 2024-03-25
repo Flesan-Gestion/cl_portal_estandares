@@ -49,7 +49,7 @@ class EmailRepository implements EmailRepositoryInterface
             'cuerpo' => $body,
             'asunto' => $subject,
             'destinatarios' => $emails_to,
-            'cabecera_img' => 'https://api.grupoflesan.com/img/LogoPortalProveedores.png'
+            'cabecera_img' => ''
         ];
         $response = Http::withHeaders($headers)->post(
             "{$URL_API}sendNotificacionVacia",
