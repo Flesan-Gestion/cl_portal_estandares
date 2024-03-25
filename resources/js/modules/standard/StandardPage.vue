@@ -81,10 +81,10 @@
 
 
                             <Button v-if="data.enable == 1 && this.$utl.accessRol([this.$env.rol.ADMINISTRADOR])"
-                                v-tooltip.top="'Inhabilitar'" placeholder="Top" severity="danger" icon="pi pi-lock"
+                                v-tooltip.top="'Activar'" placeholder="Top" severity="danger" icon="pi pi-lock"
                                 class="w-3rem" @click="disableUser(data.st_id)" />
                             <Button v-if="data.enable == 0 && this.$utl.accessRol([this.$env.rol.ADMINISTRADOR])"
-                                severity="success" icon="pi pi-lock-open" class="w-3rem" v-tooltip.top="'Habilitar'"
+                                severity="success" icon="pi pi-lock-open" class="w-3rem" v-tooltip.top="'Desactivar'"
                                 placeholder="Top" @click="enableUser(data.st_id)" />
                         </div>
                     </template>
